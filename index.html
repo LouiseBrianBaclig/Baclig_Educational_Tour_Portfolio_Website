@@ -1,0 +1,2947 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="logo.jpeg" />
+    <title>Louise Brian Baclig | Developer Portfolio & Educational Tour Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#38bdf8',
+                        accentHover: '#0ea5e9',
+                        textMain: '#f8fafc',
+                        textMuted: '#94a3b8',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+        * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%2338bdf8" d="M16 2 L18 14 L28 10 L18 16 L22 26 L16 18 L10 26 L14 16 L4 10 L14 14 Z"/></svg>') 16 16, auto;
+        }
+
+        .playlist-bubble-content {
+            min-width: 220px;
+        }
+
+        a,
+        button,
+        .cursor-pointer {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%230ea5e9" d="M16 2 L18 14 L28 10 L18 16 L22 26 L16 18 L10 26 L14 16 L4 10 L14 14 Z"/></svg>') 16 16, pointer;
+        }
+
+        html {
+            overflow-x: initial !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: initial !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #0ea5e9, #38bdf8);
+        }
+
+        /* Glass Navigation */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-fade-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-fade-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-fade-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-fade-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Fade In Up */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Timeline */
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            background-color: #38bdf8;
+            border-radius: 50%;
+            position: absolute;
+            left: -7px;
+            top: 10px;
+            border: 3px solid #0f172a;
+            transition: all 0.3s;
+            box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(56, 189, 248, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            50%,
+            100% {
+                border-color: transparent;
+            }
+
+            25%,
+            75% {
+                border-color: currentColor;
+            }
+        }
+
+        /* Music Player Styles */
+        #shuffle-btn.active {
+            color: #38bdf8;
+            /* accent color */
+        }
+
+        #playlist-container {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        #playlist-container.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #playlist-songs .active {
+            background-color: rgba(56, 189, 248, 0.2);
+        }
+
+        #music-nav-btn.playing,
+        #mobile-music-nav-btn.playing {
+            color: #38bdf8;
+            /* accent color */
+            border-radius: 6px;
+            animation: pulse-music 2s infinite;
+        }
+
+
+        @keyframes pulse-music {
+            0% {
+                box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 8px rgba(56, 189, 248, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+            }
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background-color: #0ea5e9;
+            transform: scale(1.3);
+        }
+
+
+        /* Lightbox with Zoom */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: hidden;
+        }
+
+        .lightbox img,
+        .lightbox video {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox img.zoomed {
+            cursor: zoom-out;
+        }
+
+        .lightbox-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .lightbox-btn {
+            background: rgba(56, 189, 248, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(56, 189, 248, 0.5);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            transition: all 0.3s;
+            pointer-events: all;
+        }
+
+        .lightbox-btn:hover {
+            background: rgba(56, 189, 248, 0.4);
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+
+        /* Video Thumbnail */
+        .video-thumbnail {
+            position: relative;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4rem;
+            height: 4rem;
+            background: rgba(56, 189, 248, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+        }
+
+        .video-thumbnail:hover .play-icon {
+            background: rgba(56, 189, 248, 1);
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.8);
+        }
+
+        /* Badges */
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .stat-badge:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+        }
+
+        .filter-btn.active {
+            background: #38bdf8;
+            color: white;
+            border-color: #38bdf8;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .media-badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            font-weight: 600;
+        }
+
+        .badge-image {
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+        }
+
+        .badge-video {
+            background: rgba(234, 88, 12, 0.9);
+            color: white;
+        }
+
+        /* Glowing Effects */
+        .glow-on-hover {
+            transition: all 0.3s;
+        }
+
+        .glow-on-hover:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Card Hover Effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Image Zoom Container */
+        .zoom-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .zoom-image {
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .zoom-container:hover .zoom-image {
+            transform: scale(1.1);
+        }
+
+        /* Certificate Image Styles */
+        .cert-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem 0 0 0.75rem;
+        }
+
+        .cert-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 16rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-image-container:hover .cert-image {
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media print {
+
+            nav,
+            footer,
+            .no-print {
+                display: none;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .typing {
+                animation: none;
+                border-right: none;
+                white-space: normal;
+                overflow: visible;
+            }
+
+            .cert-image-container {
+                border-radius: 0.75rem 0.75rem 0 0;
+            }
+        }
+
+        /* Mobile music bubble */
+        #music-bubble {
+            position: fixed;
+            z-index: 9999;
+            bottom: 96px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+            display: none;
+            /* shown only on mobile via JS */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s ease, opacity 0.25s;
+            overflow: hidden;
+        }
+
+        #music-bubble img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.05);
+        }
+
+        #music-bubble:active {
+            transform: scale(0.98);
+        }
+
+        /* Mobile overlay that becomes a full-player on small screens */
+        #mobile-player-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.65);
+        }
+
+        #mobile-player-overlay.show {
+            display: flex;
+        }
+
+        /* When the overlay is active, the existing player will be styled fullscreen via JS */
+        .mobile-player-fullscreen {
+            position: fixed !important;
+            inset: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100% !important;
+            height: 100vh !important;
+            padding: 2rem !important;
+            border-radius: 0 !important;
+            background: linear-gradient(180deg, #0b1220, #07101a) !important;
+            overflow-y: auto !important;
+            z-index: 99999 !important;
+        }
+
+        /* Mobile-player responsive layout tweaks */
+        .mobile-player-fullscreen .player-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+            padding-top: 1rem;
+        }
+
+        .mobile-player-fullscreen .player-inner>div {
+            width: 100% !important;
+        }
+
+        /* Make album art larger on mobile overlay */
+        .mobile-player-fullscreen #album-art {
+            width: 96px !important;
+            height: 96px !important;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Hide the bottom bar on small screens; the bubble will open the overlay */
+        @media (max-width: 768px) {
+            #music-player-container {
+                display: none !important;
+            }
+
+            #music-bubble {
+                display: flex !important;
+                bottom: 16px;
+                /* lift bubble on very small screens */
+                right: 12px;
+            }
+
+            #playlist-bubble {
+                display: none !important;
+            }
+        }
+
+        /* Playlist bubble styling */
+        #playlist-bubble {
+            position: fixed;
+            z-index: 99999;
+            right: 92px;
+            bottom: 96px;
+            display: none;
+        }
+
+        #playlist-bubble.show {
+            display: block;
+        }
+
+        /* Playlist bubble list items */
+        #playlist-bubble ul li {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        #playlist-bubble ul li:last-child {
+            border-bottom: none;
+        }
+
+        #playlist-bubble .playlist-item-title {
+            font-weight: 600;
+            display: block;
+        }
+
+        #playlist-bubble .playlist-item-artist {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            display: block;
+        }
+
+        #playlist-bubble li.active {
+            background-color: rgba(56, 189, 248, 0.08);
+        }
+
+        /* Fullscreen playlist overlay on mobile */
+        @media (max-width: 768px) {
+            #playlist-container.playlist-fullscreen {
+                position: fixed;
+                inset: 0;
+                height: 100vh;
+                transform: translateY(0);
+                background: linear-gradient(180deg, rgba(11, 18, 32, 0.95), rgba(7, 16, 26, 0.95));
+                z-index: 100000;
+                padding: calc(1rem + env(safe-area-inset-top, 0px)) 1rem 2rem 1rem;
+                overflow-y: auto;
+                border-radius: 0;
+            }
+
+            #playlist-container.playlist-fullscreen ul#playlist-songs li {
+                padding: 1rem 0.75rem;
+                font-size: 1.05rem;
+            }
+
+            #playlist-container.playlist-fullscreen .playlist-item-title {
+                font-size: 1.05rem;
+            }
+
+            #playlist-container.playlist-fullscreen .playlist-item-artist {
+                font-size: 0.95rem;
+                color: #94a3b8;
+            }
+
+            /* Hide the small playlist bubble on mobile; use full-screen overlay instead */
+            #playlist-bubble {
+                display: none !important;
+            }
+        }
+
+        /* Desktop playlist close button */
+        #playlist-close-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            padding: 0.25rem;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        #playlist-close-btn:hover {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.06);
+        }
+
+        .stat-green {
+            border-color: rgba(34, 197, 94, 0.3);
+            background-color: rgba(34, 197, 94, 0.1);
+        }
+
+        .stat-orange {
+            border-color: rgba(234, 88, 12, 0.3);
+            background-color: rgba(234, 88, 12, 0.1);
+        }
+
+        .pulse-delay-2s {
+            animation-delay: 2s;
+        }
+
+        .cert-image {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-image:hover {
+            transform: scale(1.03);
+        }
+
+        #cert-lightbox.show {
+            opacity: 1 !important;
+            display: flex !important;
+        }
+
+        .typing {
+            display: inline-block;
+            border-right: 2px solid;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(18, end) infinite alternate, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 20ch;
+                /* Number of characters in "Louise Brian Baclig" including spaces */
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            50%,
+            100% {
+                border-color: transparent;
+            }
+
+            25%,
+            75% {
+                border-color: currentColor;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-accent selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-bold text-2xl tracking-tighter gradient-text">
+                    LBB
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#home"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#about"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#skills"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#projects"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#certification"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Certification</a>
+                        <a href="#tour-overview"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Educational
+                            Tour</a>
+                        <a href="#gallery"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                        <a href="#contact"
+                            class="bg-accent hover:bg-accentHover text-primary font-bold px-4 py-2 rounded-full transition-all transform hover:scale-105">Contact</a>
+                        <a href="#music" id="music-nav-btn"
+                            class="hover:text-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Music</a>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none"
+                        aria-label="Open mobile menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:hidden hidden bg-secondary" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-700">
+                <a href="#home" class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Home</a>
+                <a href="#about" class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">About</a>
+                <a href="#skills" class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Skills</a>
+                <a href="#projects" class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Projects</a>
+                <a href="#certification"
+                    class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Certification</a>
+                <a href="#tour-overview"
+                    class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Educational Tour</a>
+                <a href="#gallery" class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Gallery</a>
+                <a href="#contact" class="block text-accent font-bold px-3 py-2 rounded-md">Contact</a>
+                <a href="#music" id="mobile-music-nav-btn"
+                    class="block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Music</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Music Player -->
+    <div id="music-player-container"
+        class="fixed bottom-0 left-0 w-full bg-secondary shadow-lg p-4 z-50 border-t border-gray-700 no-print">
+        <audio id="audio-player"></audio>
+        <div class="absolute top-2 right-2 flex gap-2">
+            <button id="minimize-btn" class="p-1 hover:text-accent" title="Minimize"><i data-lucide="minus"
+                    class="w-4 h-4"></i></button>
+            <button id="close-player-btn" class="p-1 hover:text-accent" title="Close"><i data-lucide="x"
+                    class="w-4 h-4"></i></button>
+        </div>
+        <div class="max-w-7xl mx-auto flex items-center justify-between player-inner">
+            <!-- Song Info -->
+            <div class="flex items-center gap-4 w-full md:w-1/4">
+                <img id="album-art" src="#" alt="Album Art" class="w-14 h-14 rounded-md shadow-md">
+                <div>
+                    <h3 id="song-title" class="font-bold text-base text-textMain truncate">Song Title</h3>
+                    <p id="song-artist" class="text-sm text-textMuted truncate">Artist</p>
+                </div>
+            </div>
+
+            <!-- Player Controls -->
+            <div class="flex flex-col items-center gap-2 w-full md:w-1/2">
+                <div class="flex items-center gap-4">
+                    <button id="shuffle-btn" class="p-2 rounded-full hover:text-accent transition-colors text-textMuted"
+                        title="Shuffle">
+                        <i data-lucide="shuffle" class="w-5 h-5"></i>
+                    </button>
+                    <button id="prev-btn" class="p-2 rounded-full hover:bg-accent/20 transition-colors"
+                        title="Previous">
+                        <i data-lucide="skip-back" class="w-6 h-6"></i>
+                    </button>
+                    <button id="play-pause-btn"
+                        class="p-3 bg-accent rounded-full hover:bg-accentHover transition-colors text-primary"
+                        title="Play/Pause">
+                        <i data-lucide="play" class="w-7 h-7"></i>
+                    </button>
+                    <button id="next-btn" class="p-2 rounded-full hover:bg-accent/20 transition-colors" title="Next">
+                        <i data-lucide="skip-forward" class="w-6 h-6"></i>
+                    </button>
+                    <button id="stop-btn" class="p-2 rounded-full hover:text-accent transition-colors text-textMuted"
+                        title="Stop">
+                        <i data-lucide="stop-circle" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <!-- Progress Bar -->
+                <div class="w-full flex items-center gap-2">
+                    <span id="current-time" class="text-xs text-textMuted">0:00</span>
+                    <div id="progress-container" class="w-full bg-primary h-1.5 rounded-full cursor-pointer">
+                        <div id="progress-bar" class="bg-accent h-full rounded-full"></div>
+                    </div>
+                    <span id="duration" class="text-xs text-textMuted">0:00</span>
+                </div>
+            </div>
+
+            <!-- Volume and Playlist -->
+            <div class="flex items-center gap-4 w-full md:w-1/4 md:justify-end justify-between">
+                <button id="playlist-btn" class="p-2 rounded-full hover:text-accent transition-colors text-textMuted"
+                    title="Playlist">
+                    <i data-lucide="list-music" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Playlist -->
+        <div id="playlist-container" aria-hidden="true"
+            class="hidden absolute bottom-full left-0 right-0 bg-secondary/95 backdrop-blur-sm max-h-80 overflow-y-auto p-4 rounded-t-lg shadow-2xl">
+
+            <div class="flex items-center justify-between mb-4">
+                <h4 class="text-lg font-bold">Playlist</h4>
+                <button id="playlist-close-btn" class="text-textMuted hover:text-accent p-1" title="Close playlist">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <ul id="playlist-songs" class="space-y-2">
+                <!-- Playlist items will be injected here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Mobile Music Bubble & Overlay (Chat Head / Bubble) -->
+    <div id="music-bubble" class="no-print" aria-hidden="true" title="Open Music Player">
+        <img id="bubble-art" src="logo.jpeg" alt="Music Bubble">
+    </div>
+
+    <div id="mobile-player-overlay" class="hidden" aria-hidden="true" role="dialog" aria-label="Music Player Overlay">
+        <button id="mobile-player-close"
+            class="p-3 m-4 rounded-full text-white hover:text-accent absolute top-4 right-4 bg-black/20 backdrop-blur-sm">&times;</button>
+    </div>
+
+    <!-- Mobile Playlist Bubble (near the chat-head) -->
+    <div id="playlist-bubble" class="hidden no-print" aria-hidden="true" role="dialog" aria-label="Playlist Bubble">
+        <div
+            class="p-3 rounded-xl bg-secondary/95 backdrop-blur-sm text-white shadow-lg max-h-80 overflow-y-auto playlist-bubble-content">
+            <div class="flex items-center justify-between mb-2">
+                <strong>Playlist</strong>
+                <button id="playlist-bubble-close" class="text-sm text-gray-300 hover:text-white">×</button>
+            </div>
+            <ul id="playlist-bubble-list" class="space-y-1 text-sm"></ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <div
+            class="absolute top-20 right-[-100px] w-96 h-96 bg-accent opacity-10 rounded-full blur-3xl animate-pulse hidden md:block hero-deco-right">
+        </div>
+        <div
+            class="absolute bottom-20 left-[-100px] w-72 h-72 bg-purple-500 opacity-10 rounded-full blur-3xl animate-pulse pulse-delay-2s hidden md:block hero-deco-left">
+        </div>
+
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 z-10 scroll-fade-left">
+                <div class="flex items-start gap-6">
+                    <img src="logo.jpeg" alt="Louise Brian Baclig"
+                        class="w-24 h-24 rounded-full border-4 border-accent shadow-lg object-cover flex-shrink-0 glow-on-hover">
+                    <div class="flex-1">
+                        <p class="text-accent font-medium tracking-wide">HELLO, MY NAME IS</p>
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl leading-tight mt-2">
+                            <span class="gradient-text typing">Louise Brian Baclig</span>
+                        </h1>
+
+                    </div>
+                </div>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-semibold text-textMuted">
+                    I build things for the web.
+                </h2>
+                <p class="text-textMuted max-w-lg text-base md:text-lg leading-relaxed">
+                    I'm a Full Stack Developer specializing in building exceptional digital experiences. Currently
+                    studying at Holy Cross of Davao College, focused on building accessible, human-centered products.
+                </p>
+                <div class="flex gap-4 pt-4 flex-wrap">
+                    <a href="#projects"
+                        class="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-6 py-3 rounded-md font-semibold transition-all glow-on-hover flex items-center gap-2">
+                        <img src="https://img.icons8.com/ios/50/FFFFFF/briefcase--v1.png" alt="Work Icon"
+                            class="w-5 h-5">
+                        Check out my work
+                    </a>
+                    <a href="#tour-overview"
+                        class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md font-semibold transition-all glow-on-hover flex items-center gap-2">
+                        <img src="https://img.icons8.com/ios/50/FFFFFF/journal.png" alt="Travel Journal Icon"
+                            class="w-6 h-6">
+                        View Tour Journal
+                    </a>
+                    <a href="Baclig_Resume.pdf" download
+                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-md font-semibold transition-all glow-on-hover flex items-center gap-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2989/2989976.png" alt="Download Icon"
+                            class="w-6 h-6">
+                        Download Resume
+                    </a>
+                </div>
+
+                <div class="flex gap-6 pt-6 text-textMuted">
+                    <a href="https://github.com/LouiseBrianBaclig"
+                        class="hover:text-accent transition-all transform hover:scale-110" aria-label="GitHub">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/louise-brian-baclig-502127393/"
+                        class="hover:text-accent transition-all transform hover:scale-110" aria-label="LinkedIn">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    <a href="mailto:louisebrian.baclig@hcdc.edu.ph"
+                        class="hover:text-accent transition-all transform hover:scale-110" aria-label="Email">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </a>
+                    <a href="tel:09526374071" class="hover:text-accent transition-all transform hover:scale-110"
+                        aria-label="Phone">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hidden md:flex justify-center relative z-10 scroll-fade-right">
+                <div
+                    class="relative w-80 h-80 bg-secondary rounded-2xl border border-gray-700 p-6 shadow-2xl animate-float rotate-3 hover:rotate-0 transition-transform duration-500 glow-on-hover">
+                    <div class="flex gap-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="space-y-3 font-mono text-sm text-gray-400">
+                        <p><span class="text-purple-400">const</span> <span class="text-yellow-300">developer</span> =
+                            {'{'}</p>
+                        <p class="pl-4">name: <span class="text-green-400">'Louise Brian'</span>,</p>
+                        <p class="pl-4">school: <span class="text-green-400">'HCDC'</span>,</p>
+                        <p class="pl-4">role: <span class="text-green-400">'Full Stack'</span>,</p>
+                        <p class="pl-4">hardWorker: <span class="text-accent">true</span>,</p>
+                        <p class="pl-4">coffee: <span class="text-accent">Infinity</span>,</p>
+                        <p class="pl-4">skills: [<span class="text-green-400">'React'</span>, <span
+                                class="text-green-400">'Node'</span>]</p>
+                        <p>{'}'};</p>
+                        <br>
+                        <p class="text-gray-500">// Ready to build</p>
+                        <p><span class="text-blue-400">developer</span>.<span class="text-yellow-300">code</span>();</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-secondary/30 scroll-animate">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">01.</span> About Me
+                </h2>
+                <div class="w-20 h-1 bg-accent rounded"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 items-start">
+                <div class="md:col-span-2 text-textMuted space-y-4 text-base md:text-lg scroll-fade-left">
+                    <p>
+                        Hello! My name is <span class="text-accent font-semibold">Louise Brian Baclig</span> and I enjoy
+                        creating things that live on the internet. My interest in web development started when I decided
+                        to try building custom websites — turns out hacking together HTML & CSS was exciting!
+                    </p>
+                    <p>
+                        Currently studying at <span class="text-accent font-semibold">Holy Cross of Davao
+                            College</span>, I've had the privilege of participating in educational tours, industry
+                        visits, and hands-on projects that have shaped my technical and professional skills.
+                    </p>
+                    <p>
+                        I focus on building efficient, scalable, and user-friendly solutions. Whether it's a sleek
+                        landing page or a complex web application, I bring passion and precision to every project.
+                    </p>
+                </div>
+                <div class="relative group mx-auto md:mx-0 scroll-fade-right">
+                    <div
+                        class="w-64 h-64 bg-gray-700 rounded-lg overflow-hidden relative z-10 border-2 border-gray-600 group-hover:border-accent transition-all duration-300 glow-on-hover">
+                        <img src="logo.jpeg" alt="Louise Brian Baclig" class="w-full h-full object-cover">
+                    </div>
+                    <div
+                        class="absolute w-64 h-64 border-2 border-accent rounded-lg top-4 left-4 -z-0 group-hover:top-2 group-hover:left-2 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 scroll-animate">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">02.</span> Tech
+                    Stack</h2>
+                <p class="text-textMuted max-w-2xl">The technologies and tools I use to bring ideas to life.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6" id="skills-container"></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-secondary/30 scroll-animate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">03.</span> Featured
+                    Projects</h2>
+                <p class="text-textMuted max-w-2xl mb-4">A selection of my most recent work that showcases my skills and
+                    creativity.</p>
+                <p class="text-sm italic text-textMuted"><strong>Note:</strong> This is just a display of my work, and
+                    I'm always open to new opportunities.</p>
+                <div class="w-20 h-1 bg-accent rounded mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container"></div>
+        </div>
+    </section>
+
+    <!-- Certification Section -->
+    <section id="certification" class="py-24 scroll-animate">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">04.</span> My
+                    Certification</h2>
+                <p class="text-textMuted max-w-2xl">A summary of my certifications and key accomplishments.</p>
+                <div class="w-20 h-1 bg-accent rounded mt-4"></div>
+            </div>
+
+            <div class="space-y-8" id="certification-container"></div>
+            <div id="cert-lightbox"
+                class="fixed inset-0 bg-black bg-opacity-90 hidden opacity-0 items-center justify-center z-50 transition-opacity duration-300">
+
+                <!-- Close Button -->
+                <button id="cert-lightbox-close"
+                    class="absolute top-6 right-6 text-white text-3xl font-bold hover:text-accent transition">
+                    ×
+                </button>
+
+                <!-- Enlarged Image -->
+                <img id="cert-lightbox-img" class="max-w-[50%] max-h-[50%] shadow-2xl border border-gray-700" src=""
+                    alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Overview Section -->
+    <section id="tour-overview" class="py-24 bg-secondary/30 scroll-animate">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <div class="flex items-center gap-2 mb-4 text-blue-300">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    </svg>
+                    <span class="font-semibold">ADV103 - Educational Tour Portfolio</span>
+                </div>
+
+                <div class="flex items-center gap-2 mb-6 text-blue-200">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <p>Cebu-Bohol Educational Tour 2025</p>
+                </div>
+
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">05.</span>
+                    Educational Tour Overview</h2>
+                <p class="text-textMuted max-w-3xl">4D3N Cebu-Bohol Educational Tour | November 12-15, 2025</p>
+                <div class="w-20 h-1 bg-accent rounded mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div
+                    class="bg-primary rounded-xl p-6 border border-gray-700 hover:border-accent transition-all card-hover scroll-scale">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="calendar" class="w-6 h-6 text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Duration</h3>
+                    <p class="text-textMuted">4 Days, 3 Nights<br>November 12-15, 2025</p>
+                </div>
+
+                <div
+                    class="bg-primary rounded-xl p-6 border border-gray-700 hover:border-orange-500 transition-all card-hover scroll-scale">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="users" class="w-6 h-6 text-orange-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Participants</h3>
+                    <p class="text-textMuted">4D3N Students + Faculty<br>Tour Guides: TG Roschelle, TG Renato Jr., TG
+                        Gabrielle</p>
+                </div>
+
+                <div
+                    class="bg-primary rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-all card-hover scroll-scale">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="building" class="w-6 h-6 text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Company Visits</h3>
+                    <p class="text-textMuted">7 Industry Visits<br>Technology & Engineering Focus</p>
+                </div>
+            </div>
+
+            <div class="max-w-10xl mx-auto rounded-lg bg-transparent text-center">
+                <!-- Button -->
+                <button id="viewButton"
+                    class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2 mx-auto">
+                    <img src="https://static.thenounproject.com/png/4236051-200.png" alt="Itinerary Icon"
+                        class="w-6 h-6">
+                    View the Itinerary Image Event
+                </button>
+            </div>
+
+
+            <!-- Modal for Event Image -->
+            <div id="imageModal"
+                class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+                <div class="relative">
+                    <button id="closeModal"
+                        class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+                    <img src="tourimage.jpg" alt="Event Image"
+                        class="rounded-lg max-h-[80vh] max-w-[90vw] object-contain">
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="bg-gradient-to-r from-accent to-blue-600 rounded-2xl p-8 text-white glow-on-hover scroll-scale">
+                <h3 class="text-2xl font-bold mb-6">Tour Objectives</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex gap-3">
+                        <div
+                            class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            1</div>
+                        <p>Gain practical insights into the IT and engineering industries through company visits</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <div
+                            class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            2</div>
+                        <p>Experience cultural and historical sites in Cebu and Bohol</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <div
+                            class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            3</div>
+                        <p>Develop professional conduct and CROSSIAN values during educational activities</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <div
+                            class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            4</div>
+                        <p>Document and reflect on learning experiences through this portfolio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Journal Section -->
+    <section id="tour-journal" class="py-24 scroll-animate">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">06.</span>
+                    Educational Tour Journal</h2>
+                <p class="text-textMuted max-w-3xl">A day-by-day documentation of our learning journey through Cebu and
+                    Bohol</p>
+                <div class="w-20 h-1 bg-accent rounded mt-4"></div>
+                <div class="mt-6 no-print">
+                    <button id="print-btn"
+                        class="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-6 py-3 rounded-md font-semibold transition-all flex items-center gap-2 mx-auto glow-on-hover">
+                        <i data-lucide="printer" class="w-4 h-4"></i> Print Journal
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-12" id="tour-days-container"></div>
+        </div>
+    </section>
+
+    <!-- Reflections Section -->
+    <section id="reflections" class="py-24 bg-secondary/30 scroll-animate">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">07.</span>
+                    Reflections & Key Learnings</h2>
+                <p class="text-textMuted max-w-2xl">Personal insights and takeaways from the educational tour experience
+                </p>
+                <div class="w-20 h-1 bg-accent rounded mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-primary rounded-xl p-8 border-2 border-blue-500/30 card-hover scroll-scale">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                            <i data-lucide="lightbulb" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Academic Insights</h3>
+                    </div>
+                    <p class="text-textMuted italic text-sm mb-4">
+                        This educational tour greatly enriched my academic understanding of the IT and engineering
+                        fields. Visiting companies such as Alliance Software, Dynata, Rivant IT, Mata Technologies, and
+                        Tecdia allowed me to see how the concepts we study in class—systems development, data
+                        management, software testing, networking, and hardware engineering—are applied in real industry
+                        settings.
+                        I observed several industry best practices, including agile workflows, strict version control,
+                        proper documentation, and the importance of cybersecurity in everyday operations. Many companies
+                        also introduced us to new technologies and tools such as immersive tech systems, automated
+                        testing platforms, data analytics dashboards, and modern hardware fabrication techniques.
+                        Seeing these firsthand helped me connect classroom theories to real-world applications, making
+                        the lessons feel more practical, modern, and impactful. It reinforced the idea that IT is not
+                        just about coding—it’s about solving problems, improving processes, and contributing to
+                        innovation.
+                    </p>
+                    <ul class="text-textMuted space-y-2 text-sm">
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>Industry best practices observed
+                        </li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>New technologies and tools
+                            discovered</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>Real-world application of
+                            classroom learning</li>
+                    </ul>
+                </div>
+
+                <div class="bg-primary rounded-xl p-8 border-2 border-orange-500/30 card-hover scroll-scale">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                            <i data-lucide="heart" class="w-6 h-6 text-orange-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Personal Growth</h3>
+                    </div>
+                    <p class="text-textMuted italic text-sm mb-4">
+                        Beyond the academic lessons, the tour played a major role in my personal development. Throughout
+                        the activities, I became more aware of how I applied CROSSIAN values such as Competence,
+                        Respect, Responsibility, Service, and Spirituality.
+                        Cultural appreciation and awareness grew as we visited historical and natural sites in Bohol,
+                        reminding me of the importance of heritage in shaping innovation.
+                        I practiced professional conduct and etiquette during company tours—dressing appropriately,
+                        asking meaningful questions, and interacting respectfully with industry representatives.
+                        The trip also strengthened my teamwork and collaboration skills. Whether during group
+                        activities, shared meals, or navigating schedules, I learned how important communication,
+                        cooperation, and patience are when working with others.
+                        This tour helped me grow not only as a student but also as a more mature and responsible
+                        individual.
+                    </p>
+                    <ul class="text-textMuted space-y-2 text-sm">
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0"></i>Cultural appreciation and
+                            awareness</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0"></i>Professional conduct and
+                            etiquette</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0"></i>Teamwork and collaboration
+                            skills</li>
+                    </ul>
+                </div>
+
+                <div class="bg-primary rounded-xl p-8 border-2 border-green-500/30 card-hover scroll-scale">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-green-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Career Perspectives</h3>
+                    </div>
+                    <p class="text-textMuted italic text-sm mb-4">
+                        This experience significantly influenced how I view my future career. The different companies we
+                        visited exposed me to various IT fields—software development, data analytics, hardware
+                        engineering, immersive tech, and customer support operations. It gave me clarity on potential
+                        career paths, especially the areas that sparked my interest the most.
+                        Interacting with professionals helped me understand industry expectations and requirements, such
+                        as the need for strong technical foundations, continuous learning, adaptability, and solid soft
+                        skills. I also realized the value of building professional networks, even at an early stage, as
+                        these connections may help guide future opportunities.
+                        The tour strengthened my commitment to pursue an IT career that aligns with both my skills and
+                        my passion for innovation.
+                    </p>
+                    <ul class="text-textMuted space-y-2 text-sm">
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0"></i>Career path insights and clarity
+                        </li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0"></i>Industry expectations and
+                            requirements</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0"></i>Professional networking
+                            opportunities</li>
+                    </ul>
+                </div>
+
+                <div class="bg-primary rounded-xl p-8 border-2 border-purple-500/30 card-hover scroll-scale">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                            <i data-lucide="star" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Memorable Moments</h3>
+                    </div>
+                    <p class="text-textMuted italic text-sm mb-4">
+                        The tour was filled with experiences that left lasting impressions. Among all the activities, a
+                        few stood out the most:
+                        My favorite cultural site was the Chocolate Hills—its natural beauty felt surreal and reminded
+                        me of the wonders found in our own country.
+                        The most impactful company visit was Mata Technologies, where we saw innovative immersive
+                        technologies that opened my eyes to the future possibilities in tech.
+                        Some of the most meaningful moments came from simply spending time with classmates—sharing
+                        meals, traveling together, and experiencing new places as a group. These moments strengthened
+                        friendships and created memories that I will carry long after the tour has ended.
+                        Overall, this educational tour was not just a requirement—it was a transformative journey filled
+                        with learning, culture, inspiration, and personal growth.
+                    </p>
+                    <ul class="text-textMuted space-y-2 text-sm">
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0"></i>Favorite cultural or historical
+                            site</li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0"></i>Most impactful company visit
+                        </li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle"
+                                class="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0"></i>Special moments with classmates
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="bg-gradient-to-r from-accent to-purple-600 rounded-2xl p-8 text-white glow-on-hover scroll-scale">
+                <h3 class="text-2xl font-bold text-center mb-6">Final Thoughts</h3>
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                    <p class="text-center italic text-blue-100 text-sm md:text-base">
+                        This educational tour has been one of the most meaningful experiences of my academic journey. It
+                        bridged the gap between classroom learning and the real world, giving me a clearer picture of
+                        what it truly means to pursue a career in the IT field. Seeing actual workplaces, meeting
+                        industry professionals, and observing real processes gave me confidence and motivation to
+                        continue improving my skills. My main takeaway is that success in this industry requires not
+                        only technical knowledge, but also adaptability, strong communication, professionalism, and a
+                        willingness to learn continuously.
+                        The cultural and historical visits in Bohol added a deeper dimension to the trip, reminding me
+                        that technology and innovation should always serve people, communities, and heritage. This
+                        balance between learning, exploration, and reflection helped me grow both as a student and as an
+                        individual preparing for a future career.
+                        I am sincerely grateful to our organizers, faculty members, coordinators, and school
+                        administration for making this tour possible. Their dedication ensured that we learned, enjoyed,
+                        and stayed safe throughout the entire journey. I also want to thank my classmates and fellow
+                        students for the camaraderie, cooperation, and unforgettable moments we shared. Together, we
+                        turned this tour into a meaningful adventure filled with knowledge, laughter, and lasting
+                        memories.
+                        This experience has strengthened my resolve to pursue excellence, stay curious, and work hard
+                        toward the IT career I aspire to build.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 scroll-animate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><span class="text-accent">08.</span> Media
+                    Gallery</h2>
+                <p class="text-textMuted max-w-2xl">Photos and videos from the educational tour. Click any item to view
+                    in full size.</p>
+                <div class="w-20 h-1 bg-accent rounded mt-4"></div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <div class="stat-badge">
+                    <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+                    <span>Total: <span id="total-count">0</span></span>
+                </div>
+                <div class="stat-badge stat-green">
+                    <i data-lucide="image" class="w-4 h-4 text-green-400"></i>
+                    <span>Images: <span id="image-count">0</span></span>
+                </div>
+
+                <div class="stat-badge stat-orange">
+                    <i data-lucide="video" class="w-4 h-4 text-orange-400"></i>
+                    <span>Videos: <span id="video-count">0</span></span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active" data-filter="all">
+                    <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+                    All Media
+                </button>
+                <button class="filter-btn" data-filter="images">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                    Images Only
+                </button>
+                <button class="filter-btn" data-filter="videos">
+                    <i data-lucide="video" class="w-4 h-4"></i>
+                    Videos Only
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-container"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-secondary/30 scroll-animate">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-accent font-medium mb-4">09. What's Next?</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Get In Touch</h2>
+            <p class="text-textMuted text-base md:text-lg mb-8">
+                Whether you have a question, want to collaborate on a project, or just want to say hi, I'll try my best
+                to get back to you!
+            </p>
+
+            <form id="contact-form" class="max-w-md mx-auto space-y-4 text-left">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Your Email</label>
+                    <input type="email" id="email" required
+                        class="w-full bg-secondary border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent transition-all">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                    <textarea id="message" rows="4" required
+                        class="w-full bg-secondary border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent transition-all"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-primary font-bold py-3 rounded-lg transition-all duration-300 glow-on-hover">
+                    Send Message
+                </button>
+            </form>
+
+            <div id="form-success"
+                class="hidden mt-4 p-4 bg-green-500/20 text-green-400 rounded-lg border border-green-500/50">
+                Message sent successfully! I'll get back to you soon.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                        </svg>
+                        <span class="font-semibold">Educational Tour Portfolio</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Holy Cross of Davao College<br>
+                        ADV103 - IT Elective 3
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Student Information</h4>
+                    <p class="text-gray-400 text-sm">
+                        <strong class="text-white">Name:</strong> Louise Brian C. Baclig<br>
+                        <strong class="text-white">Student ID:</strong> 59835267<br>
+                        <strong class="text-white">Course:</strong> ADV103<br>
+                        <strong class="text-white">Tour:</strong> Cebu-Bohol Educational Tour
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Details</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center gap-2 text-gray-400">
+                            <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                            <a href="mailto:louisebrian.baclig@hcdc.edu.ph" class="hover:text-white transition-colors">
+                                louisebrian.baclig@hcdc.edu.ph
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-400">
+                            <i data-lucide="phone" class="w-4 h-4 text-blue-400"></i>
+                            <a href="tel:09526374071" class="hover:text-white transition-colors">09526374071</a>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-400">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i>
+                            <span>Davao City, Philippines</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>Designed & Built by Louise Brian Baclig</p>
+                <p class="mt-2">© <span id="year"></span> All rights reserved. Holy Cross of Davao College</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="absolute top-4 right-4 text-white text-4xl hover:text-accent transition-colors z-50"
+            onclick="closeLightbox()" aria-label="Close lightbox">&times;</button>
+        <div class="lightbox-controls">
+            <button class="lightbox-btn" onclick="previousMedia()" aria-label="Previous media">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button class="lightbox-btn" onclick="nextMedia()" aria-label="Next media">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <div id="lightbox-content" class="relative z-40 lightbox-content-wrapper"></div>
+        <p id="lightbox-caption"
+            class="absolute top-0 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded-b-lg text-sm max-w-2xl text-center">
+        </p>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // ===== DATA =====
+        const skills = [
+            { name: "HTML", icon: "code-2" },
+            { name: "CSS", icon: "code-2" },
+            { name: "JavaScript", icon: "code-2" },
+            { name: "React", icon: "atom" },
+            { name: "Node.js", icon: "server" },
+            { name: "Tailwind CSS", icon: "palette" },
+            { name: "TypeScript", icon: "file-code" },
+            { name: "Git", icon: "git-branch" },
+            { name: "Firebase", icon: "database" },
+            { name: "Figma", icon: "figma" },
+            { name: "Python", icon: "terminal" },
+            { name: "SQL", icon: "table" }
+        ];
+
+        const projects = [
+            {
+                title: "Baliraya Beach Resort",
+                desc: "A full-featured resort website showcasing Baliraya Beach Resort, including room booking, gallery, amenities, and customer testimonials located near Oak island, Waniban island and Pujada island 30kms away from downtown Mati City, Davao Oriental.",
+                tags: ["React Native", "Tailwind", "Firebase", "React", "Vercel", "Node.js"],
+                links: {
+                    demo: "https://baliraya-beach-resort-demo.vercel.app",
+                    code: "https://github.com/BalirayaBeachResort/baliraya-beach-resort"
+                },
+                color: "bg-blue-500"
+            },
+            {
+                title: "Enzo's Fastfood Restaurant",
+                desc: "A modern fast-food restaurant web app with menu display, online ordering, and contact integration for Enzo's Fastfood Restaurant located in Baywalk Seaside, Mati City Davao Oriental.",
+                tags: ["React Native", "Tailwind", "Firebase", "React", "Vercel", "Node.js"],
+                links: {
+                    demo: "https://enzos-fastfood-demo.vercel.app",
+                    code: "https://github.com/EnzosFastFood/enzos-fastfood-restaurant"
+                },
+                color: "bg-purple-500"
+            },
+            {
+                title: "Gamesphere Online Forum",
+                desc: "A community-driven online gaming forum where users can create posts, discuss games, share updates, and interact through comments. Features include user authentication, post moderation, and responsive UI.",
+                tags: ["React", "Tailwind", "Firebase", "Node.js", "Vercel", "React Native"],
+                links: {
+                    demo: "https://gamesphere-demo-site.com/gamesphere",
+                    code: "https://github.com/yourusername/gamesphere-online-forum"
+                },
+                color: "bg-green-500"
+            },
+            {
+                title: "Barangay Calapagan Residency System",
+                desc: "A digital residency information system designed for Barangay Calapagan, offering resident profiling, certification requests, record management, and secure admin access for barangay staff.",
+                tags: ["PHP", "MySQL", "Bootstrap", "XAMPP", "CRUD System"],
+                links: {
+                    demo: "https://calapagan-residency-demo-site.com/calapagan-residency",
+                    code: "https://github.com/barangay-calapagan-residency-system/barangay-calapagan-residency-system"
+                },
+                color: "bg-yellow-500"
+            }
+        ];
+
+
+        const certificationData = [
+            {
+                title: "National Certificate II (NC II)",
+                company: "Technical Education and Skills Development Authority (TESDA)",
+                period: "Valid until: June 19, 2028",
+                location: "CANDOR-TCI Mati City, Davao Oriental, Philippines",
+                image: "NC2cert.jpg",
+                details: [
+                    "Awarded National Certificate II in Computer Systems Servicing.",
+                    "Demonstrated competency in Basic, Common, and Core competencies required for Computer Systems Servicing.",
+                    "Core Competencies include: Install and configure computer systems, Set up Computer Networks, Set up Server/Network, and Maintain and Repair Computer Systems and Networks."
+                ]
+            },
+            {
+                title: "Certificate of Completion - JDVP",
+                company: "Christian Academy in Davao Oriental Technological Colleges, Inc.",
+                period: "May 8, 2023 - June 23, 2023",
+                location: "Mati, Davao Oriental",
+                image: "jdvpcert.jpg",
+                details: [
+                    "Completed the Three Hundred Twenty Hours (320) training in Computer Systems Servicing NC II under the Joint Delivery Voucher Program (JDVP)."
+                ]
+            },
+            {
+                title: "Certificate of Completion - Information Management",
+                company: "CODECHUM (via Holy Cross of Davao College)",
+                period: "May 16, 2025",
+                location: "Online/Davao City",
+                image: "codechum.png",
+                details: [
+                    "Acquired the certificate for the Information Management subject with a total score of 1070/1100."
+                ]
+            },
+            {
+                title: "Certificate of Completion - Educational Tour",
+                company: "World of Adventures Travel and Tours",
+                period: "November 12-15, 2025",
+                location: "Cebu and Bohol, Philippines",
+                image: "tourcert.jpg",
+                details: [
+                    "Successfully completed the Educational Tour in Cebu and Bohol, which included visits to: UP Cebu Business Incubator for IT, DYNASTA Philippines, Inc., Rivan IT Cebu, MATA Technologies, Inc., and the Telephone and Radio System Integrated Emergency Response (T.A.R.S.I.E.R.) in Bohol."
+                ]
+            }
+        ];
+
+        const tourDays = [
+            {
+                day: "Day 1",
+                date: "November 12, 2025 (Wednesday)",
+                title: "Arrival in Cebu Heritage Tour & Academic Immersion",
+                location: "Davao City - Cebu City",
+                color: "blue",
+                schedule: [
+                    "7:00 AM - First batch ETD Davao to Cebu via PAL • ETA 8:00 AM",
+                    "8:45 AM - Second batch ETD Davao to Cebu via PAL • ETA 9:45 AM",
+                    "10:00 AM - Cebu Heritage Tour",
+                    "11:00 AM - Lunch Luxury Buffet at Vikings, SM City",
+                    "2:00 PM - UP Cebu Information Technology Center",
+                    "4:30 PM - Check-in at Bai Hotel",
+                    "Dinner: Own choice (₱300 budget)"
+                ],
+                highlights: ["Cebu Heritage Tour", "UP Cebu IT Center Visit", "Check-in at Bai Hotel", "Vikings Luxury Buffet"],
+                reflection: "Day 1 was an exciting start to our educational tour. Traveling from Davao City to Cebu, I felt a mix of anticipation and curiosity as this trip promised both cultural exploration and academic learning. The early flight gave us a fresh start, and arriving in Cebu marked the beginning of a journey filled with new experiences. The Cebu Heritage Tour was my first opportunity to immerse myself in the city’s rich history. Seeing iconic sites and learning about Cebu’s historical landmarks made me appreciate the stories behind each monument. It was a meaningful reminder of our country’s heritage and the importance of preserving cultural identity. Lunch at Vikings Luxury Buffet was not only a delightful gastronomic experience but also an opportunity to bond with classmates. Sharing a meal together allowed us to build camaraderie and set a positive tone for the days ahead. The visit to the UP Cebu Information Technology Center was the highlight of the day academically. Walking through the facilities, observing the IT labs, and hearing about the programs and technologies they use gave me a glimpse of how advanced educational institutions apply IT concepts in real life. It helped me connect classroom theories with practical applications, particularly in networking, software development, and IT infrastructure management. Checking in at Bai Hotel marked a smooth transition into a comfortable and organized stay, where we could rest and reflect on the day’s experiences. Dinner on our own budget encouraged independence and personal planning—skills that are essential both in professional life and while traveling. Overall, Day 1 set the stage for a tour that balances learning, cultural appreciation, and personal growth. It gave me the first taste of professional environments, highlighted the importance of teamwork, and sparked my curiosity for the days ahead."
+            },
+            {
+                day: "Day 2",
+                date: "November 13, 2025 (Thursday)",
+                title: "Industry Visits - IT Companies",
+                location: "Cebu IT Park / Business Districts",
+                color: "orange",
+                schedule: [
+                    "Breakfast Buffet at Café Bai Hotel",
+                    "9:00 AM - Engineering: Alliance Software, Inc.",
+                    "9:00 AM - BSIT A: Rivant IT Cebu",
+                    "9:00 AM - BSIT B: Dynata Philippines Inc.",
+                    "2:00 PM - Engineering: Tecdia Cebu Inc.",
+                    "2:00 PM - BSIT A: Dynata Philippines Inc.",
+                    "2:00 PM - BSIT B: Rivant IT Cebu",
+                    "5:30 PM - Dinner: Own choice (₱300)"
+                ],
+                highlights: ["Alliance Software Inc.", "Rivant IT Cebu", "Dynata Philippines Inc.", "Tecdia Cebu Inc."],
+                reflection: "Day 2 was one of the most insightful parts of the tour as we spent the entire day visiting different IT companies within Cebu IT Park. Our morning visits to Alliance Software Inc., Rivant IT Cebu, and Dynata Philippines Inc. opened my eyes to how diverse the tech industry can be in terms of culture, workflow, and employee dynamics. At Alliance Software, I was impressed by how organized their development process was and how teamwork played a major role in their success. Rivant IT Cebu, on the other hand, showcased a more innovative and fast-paced environment that highlighted the importance of adaptability in tech-driven workplaces. Meanwhile, Dynata Philippines emphasized data-driven solutions and global collaboration, showing how local talents play a big role in international projects. In the afternoon, our visit to Tecdia Cebu Inc. further broadened my understanding of how technology blends with precision engineering to create high-quality products. Across all these companies, one lesson stood out clearly: technical skills may get you in the door, but soft skills—communication, professionalism, teamwork, and problem-solving—are what truly sustain a successful career in the IT field. Being able to observe real employees, real processes, and real work cultures made everything we study in class feel more concrete and meaningful. The industry visits not only motivated me academically but also helped me visualize the kind of professional I aspire to become in the future."
+            },
+            {
+                day: "Day 3",
+                date: "November 14, 2025 (Friday)",
+                title: "More Industry Visits & Travel to Bohol",
+                location: "Cebu to Panglao",
+                color: "green",
+                schedule: [
+                    "Breakfast Buffet at Café Bai Hotel",
+                    "9:00 AM - Engineering: Rivant IT Cebu",
+                    "9:00 AM - BSIT A & B: Mata Technologies",
+                    "10:30 AM - Lunch Authentic Buffet at Somac Korean Buffet",
+                    "12:00 PM - Proceed to Pier for Tagbilaran",
+                    "2:30 PM - Cebu to Tagbilaran via Supercat",
+                    "5:00 PM - Check-in at Panglao Vista Suites"
+                ],
+                highlights: ["Mata Technologies Visit", "Somac Korean Buffet", "Supercat Travel", "Panglao Exploration"],
+                reflection: "Day 3 marked a meaningful transition from the fast-paced environment of Cebu’s tech industry to the more relaxing atmosphere of Bohol. Our visit to Mata Technologies was one of the highlights of the morning, as we were introduced to their innovative work in immersive technology and creative digital solutions. Seeing how they integrate advanced simulations and modern tech tools into real-world applications was both inspiring and eye-opening. It emphasized how rapidly the industry is evolving and how important it is for future IT professionals like us to stay curious and adaptable. After the company visit, our lunch at Somac Korean Buffet offered a fun break from the structured itinerary—good food, laughter, and moments to bond with classmates. By noon, we proceeded to the pier and boarded the Supercat ferry bound for Tagbilaran. The two-hour ride felt refreshing; it gave us time to unwind, enjoy the sea breeze, and appreciate the scenic beauty between Cebu and Bohol. Upon arriving in Tagbilaran and checking in at Panglao Vista Suites, the atmosphere shifted from academic to more relaxed. The cool breeze, quieter surroundings, and the island vibe provided the perfect setting to process everything we learned during the Cebu leg. Overall, the day blended learning with reflection, movement, and connection. It reminded me that even in academic journeys, moments of rest and transition play an important role in helping us grow, appreciate our experiences, and prepare for the next part of our adventure."
+            },
+            {
+                day: "Day 4",
+                date: "November 15, 2025 (Saturday)",
+                title: "Bohol Cultural Tour & Return to Davao",
+                location: "Bohol - Davao City",
+                color: "purple",
+                schedule: [
+                    "6:00 AM - Breakfast Buffet at Vista Suites • Check-out",
+                    "8:30 AM - Tarsier area visit",
+                    "11:00 AM - Lunch Fiesta at Floating Restaurant while cruising Loboc River",
+                    "Afternoon - Baclayon Church, Chocolate Hills, Tarsier Conservation, Man-made Forest",
+                    "5:30 PM - Dinner Buffet at South Farm, Panglao",
+                    "7:10 PM - ETD Tagbilaran to Davao via Cebu Pacific"
+                ],
+                highlights: ["Tarsier Conservation", "Loboc River Cruise", "Chocolate Hills", "Baclayon Church"],
+                reflection: "Day 4 beautifully blended culture, nature, and learning as we explored some of Bohol’s most iconic destinations. Visiting the Tarsier Conservation area was both humbling and insightful; it highlighted the delicate balance between technological advancement and environmental protection. Seeing how conservation efforts rely on monitoring tools, research, and careful data collection made me appreciate how IT can play a meaningful role in wildlife preservation. The Loboc River Cruise offered a peaceful break in the day—good food, music, and scenery that reminded us of the richness of Filipino culture. Moments like these made the tour feel not just educational, but truly grounding. The rest of the tour took us to historical and natural landmarks such as Baclayon Church and the breathtaking Chocolate Hills. Standing in front of these wonders made me reflect on how history and nature shape our identity as Filipinos. The man-made forest, Mirror of the World, the Blood Compact Shrine, and even the pasalubong stops added different layers to the day, each highlighting a part of Bohol’s story—from heritage and artistry to innovation and tourism. As we traveled back to Davao, passing through Manila for our connecting flight, I felt a sense of fulfillment. This educational tour allowed me to experience firsthand the cultural depth, natural beauty, and technological potential of the regions we visited. It reminded me why the IT field matters—not just for creating systems, but for improving lives, preserving culture, and supporting communities. This final day was a perfect conclusion to an incredible learning journey."
+            }
+        ];
+
+        const mediaItems = [
+            { id: 1, type: 'image', src: '1stbatch.jpeg', caption: 'First batch departure from Davao to Cebu', day: 1 },
+            { id: 2, type: 'image', src: '2ndbatch.jpg', caption: 'Second batch at the airport', day: 1 },
+            { id: 3, type: 'image', src: 'cebuheritage.jpg', caption: 'Cebu Heritage Tour', day: 1 },
+            { id: 4, type: 'image', src: 'vikings.jpg', caption: 'Lunch at Vikings Buffet', day: 1 },
+            { id: 5, type: 'image', src: 'UPCebu.jpg', caption: 'UP Cebu IT Center Visit', day: 1 },
+            { id: 6, type: 'image', src: 'checkinbai.jpg', caption: 'Check-in at Bai Hotel', day: 1 },
+            { id: 7, type: 'image', src: 'dinnerown.jpg', caption: 'Dinner on our own', day: 1 },
+            { id: 8, type: 'image', src: 'breakfastday2.jpg', caption: 'Breakfast at Bai Hotel', day: 2 },
+            { id: 9, type: 'image', src: 'rivanit.jpg', caption: 'Rivant IT Cebu Company Visit', day: 2 },
+            { id: 10, type: 'image', src: 'buffet101.jpg', caption: 'Lunch at Buffet 101', day: 2 },
+            { id: 11, type: 'image', src: 'dynata.jpg', caption: 'Dynata Philippines Inc. Visit', day: 2 },
+            { id: 12, type: 'image', src: 'dinnerown2.jpg', caption: 'Dinner and rest time', day: 2 },
+            { id: 13, type: 'image', src: 'breakfastday3.jpg', caption: 'Breakfast Day 3', day: 3 },
+            { id: 14, type: 'image', src: 'matatech.jpg', caption: 'MATA Technologies Visit', day: 3 },
+            { id: 15, type: 'image', src: 'somaclunch.jpg', caption: 'Korean Buffet Lunch', day: 3 },
+            { id: 16, type: 'image', src: 'piertagbi.jpg', caption: 'Departure to Tagbilaran', day: 3 },
+            { id: 17, type: 'image', src: 'tagbisupercat.jpg', caption: 'Supercat Ferry Travel', day: 3 },
+            { id: 18, type: 'image', src: 'tagbiport.jpg', caption: 'Arrival at Tagbilaran Port', day: 3 },
+            { id: 19, type: 'image', src: 'checkinvistasuites.jpg', caption: 'Check-in at Vista Suites', day: 3 },
+            { id: 20, type: 'image', src: 'breakfastvista4.jpg', caption: 'Breakfast Day 4', day: 4 },
+            { id: 21, type: 'image', src: '117Tarsier.jpg', caption: 'Tarsier Conservation Visit', day: 4 },
+            { id: 22, type: 'image', src: 'lobocrivlunch.jpg', caption: 'Loboc River Cruise', day: 4 },
+            { id: 23, type: 'image', src: 'chocohills.jpg', caption: 'Chocolate Hills', day: 4 },
+            { id: 24, type: 'image', src: 'tarsconserv.jpg', caption: 'Tarsier Conservation Area', day: 4 },
+            { id: 25, type: 'image', src: 'manmadefor.jpg', caption: 'Man-made Forest', day: 4 },
+            { id: 26, type: 'image', src: 'pasalubong.jpeg', caption: 'Pasalubong Shopping', day: 4 },
+            { id: 27, type: 'image', src: 'dinnerpanglao.jpg', caption: 'Dinner at South Farm', day: 4 },
+            { id: 28, type: 'image', src: 'panglaoairport.jpg', caption: 'Panglao Airport Departure', day: 4 },
+            { id: 29, type: 'image', src: 'davaoarrival.jpeg', caption: 'Arrival back in Davao', day: 4 },
+            { id: 30, type: 'video', src: 'airoplanewalthrough.mp4', thumbnail: '2ndbatch.jpg', caption: 'Airport Walkthrough', day: 1 },
+            { id: 31, type: 'video', src: 'rivanit.mp4', thumbnail: 'rivanit.jpg', caption: 'Rivant IT Tour Video', day: 2 },
+            { id: 32, type: 'video', src: 'boholvid.mp4', thumbnail: 'chocohills.jpg', caption: 'Bohol Highlights', day: 3 },
+            { id: 33, type: 'video', src: 'davaoarrival.mp4', thumbnail: 'davaoarrival.jpeg', caption: 'Return to Davao', day: 4 }
+        ];
+
+        let currentFilter = 'all';
+        let currentMediaIndex = 0;
+        let filteredMedia = [];
+        let zoomLevel = 1;
+        let lastTap = 0;
+
+        // ===== RENDER FUNCTIONS =====
+
+        // Render Skills
+        const skillsContainer = document.getElementById('skills-container');
+        skills.forEach((skill, index) => {
+            const skillEl = document.createElement('div');
+            skillEl.className = 'bg-secondary p-6 rounded-lg flex flex-col items-center justify-center gap-3 border border-gray-700 hover:border-accent hover:transform hover:-translate-y-2 transition-all duration-300 group card-hover scroll-scale';
+            skillEl.style.animationDelay = `${index * 0.1}s`;
+            skillEl.innerHTML = `
+                <i data-lucide="${skill.icon}" class="w-10 h-10 text-gray-400 group-hover:text-accent transition-colors"></i>
+                <span class="font-medium text-sm text-gray-300 group-hover:text-white">${skill.name}</span>
+            `;
+            skillsContainer.appendChild(skillEl);
+        });
+
+        // Render Projects
+        const projectsContainer = document.getElementById('projects-container');
+        projects.forEach((project, index) => {
+            const projectEl = document.createElement('div');
+            projectEl.className = 'bg-primary rounded-xl overflow-hidden border border-gray-700 hover:border-accent transition-all duration-300 group flex flex-col h-full card-hover scroll-scale';
+            projectEl.style.animationDelay = `${index * 0.1}s`;
+
+            const imagePlaceholder = `
+                <div class="h-48 w-full ${project.color} bg-opacity-10 flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-90"></div>
+                    <i data-lucide="folder" class="w-16 h-16 text-gray-500/50 group-hover:scale-125 transition-transform duration-500"></i>
+                </div>
+`;
+
+            projectEl.innerHTML = `
+                ${imagePlaceholder}
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-100 group-hover:text-accent transition-colors">${project.title}</h3>
+                        <div class="flex gap-3">
+                            <a href="${project.links.code}" class="text-gray-400 hover:text-accent transition-all transform hover:scale-110" aria-label="View code"><i data-lucide="github" class="w-5 h-5"></i></a>
+                            <a href="${project.links.demo}" class="text-gray-400 hover:text-accent transition-all transform hover:scale-110" aria-label="View demo"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                    <p class="text-textMuted mb-6 text-sm leading-relaxed flex-1">${project.desc}</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        ${project.tags.map(tag => `<span class="text-xs font-mono text-accent bg-accent/10 px-3 py-1 rounded-full">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            projectsContainer.appendChild(projectEl);
+        });
+
+        // Render certification with Images
+        const certificationContainer = document.getElementById('certification-container');
+        certificationData.forEach((cert, index) => {
+            const certEl = document.createElement('div');
+            certEl.className = 'bg-secondary rounded-xl shadow-lg hover:shadow-accent/20 transition-all duration-300 border border-gray-700 hover:border-accent scroll-scale overflow-hidden';
+            certEl.style.animationDelay = `${index * 0.15}s`;
+
+            const detailsList = cert.details.map(detail =>
+                `<li class="flex items-start text-textMuted text-sm mb-2"><i data-lucide="check-circle" class="w-4 h-4 text-accent mt-0.5 mr-2 flex-shrink-0"></i>${detail}</li>`
+            ).join('');
+
+            certEl.innerHTML = `
+                <div class="grid md:grid-cols-5 gap-0">
+                    <div class="md:col-span-2 cert-image-container">
+                        <img src="${cert.image}" alt="${cert.title}" class="cert-image" onerror="this.src='logo.jpeg'">
+                    </div>
+                    <div class="md:col-span-3 p-6">
+                        <p class="text-sm font-semibold text-accent mb-1">${cert.period}</p>
+                        <h3 class="text-xl font-bold text-white mt-1 mb-2">${cert.title}</h3>
+                        <p class="text-gray-400 mb-4 text-sm">${cert.company} | ${cert.location}</p>
+                        <ul class="list-none space-y-2">
+                            ${detailsList}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            certificationContainer.appendChild(certEl);
+        });
+
+        // Render Tour Days
+        const tourDaysContainer = document.getElementById('tour-days-container');
+        tourDays.forEach((day, index) => {
+            const dayEl = document.createElement('article');
+            dayEl.className = 'bg-primary rounded-2xl border border-gray-700 hover:border-accent transition-all duration-300 overflow-hidden card-hover scroll-animate';
+            dayEl.style.animationDelay = `${index * 0.1}s`;
+
+            const colorClasses = {
+                blue: { gradient: 'from-blue-600 to-blue-800', bg: 'bg-blue-600/10', border: 'border-blue-600/30' },
+                orange: { gradient: 'from-orange-600 to-orange-800', bg: 'bg-orange-600/10', border: 'border-orange-600/30' },
+                green: { gradient: 'from-green-600 to-green-800', bg: 'bg-green-600/10', border: 'border-green-600/30' },
+                purple: { gradient: 'from-purple-600 to-purple-800', bg: 'bg-purple-600/10', border: 'border-purple-600/30' }
+            };
+
+            const colors = colorClasses[day.color];
+
+            dayEl.innerHTML = `
+                <div class="h-2 bg-gradient-to-r ${colors.gradient}"></div>
+                <div class="p-6 md:p-8">
+                    <div class="flex flex-wrap items-center justify-between mb-6">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="text-accent font-bold text-lg">${day.day}</span>
+                                <span class="text-gray-500">•</span>
+                                <span class="text-gray-400 text-sm">${day.date}</span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold text-white">${day.title}</h3>
+                            <p class="text-gray-400 flex items-center gap-2 mt-2">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                ${day.location}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-secondary/50 p-6 rounded-xl border border-gray-700">
+                            <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                <i data-lucide="calendar" class="w-5 h-5 text-accent"></i>
+                                Schedule
+                            </h4>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                ${day.schedule.map(item => `<li class="flex items-start gap-2"><i data-lucide="clock" class="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0"></i><span>${item}</span></li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div>
+                            <div class="bg-secondary/50 p-6 rounded-xl border border-gray-700 mb-4">
+                                <h4 class="font-semibold text-white mb-3 flex items-center gap-2">
+                                    <i data-lucide="star" class="w-5 h-5 text-accent"></i>
+                                    Highlights
+                                </h4>
+                                <div class="flex flex-wrap gap-2">
+                                    ${day.highlights.map(h => `<span class="px-3 py-1 bg-primary rounded-full text-xs text-gray-300 border border-gray-700">${h}</span>`).join('')}
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br ${colors.bg} p-6 rounded-xl border ${colors.border}">
+                                <h4 class="font-semibold text-white mb-3 flex items-center gap-2">
+                                    <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
+                                    Reflection
+                                </h4>
+                                <p class="text-gray-300 text-sm leading-relaxed italic">
+                                    "${day.reflection}"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            tourDaysContainer.appendChild(dayEl);
+        });
+
+        // Render Gallery
+        function renderGallery() {
+            filteredMedia = currentFilter === 'all'
+                ? mediaItems
+                : mediaItems.filter(item => currentFilter === 'images' ? item.type === 'image' : item.type === 'video');
+
+            const galleryContainer = document.getElementById('gallery-container');
+            galleryContainer.innerHTML = filteredMedia.map((item, index) => {
+                const isVideo = item.type === 'video';
+                return `
+                    <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-accent transition-all duration-300 cursor-pointer aspect-square zoom-container card-hover ${isVideo ? 'video-thumbnail' : ''}" 
+                         onclick="openLightbox(${index})">
+                        <img src="${isVideo ? item.thumbnail : item.src}" 
+                             alt="${item.caption}" 
+                             class="zoom-image"
+                             onerror="this.src='logo.jpeg'">
+                        ${isVideo ? `
+                            <div class="play-icon">
+                                <i data-lucide="play" class="w-6 h-6 text-white"></i>
+</div>
+                        ` : ''}
+                        <div class="media-badge ${isVideo ? 'badge-video' : 'badge-image'}">
+                            <i data-lucide="${isVideo ? 'video' : 'image'}" class="w-3 h-3"></i>
+                            ${isVideo ? 'Video' : 'Photo'}
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white text-sm font-medium">${item.caption}</p>
+                                <p class="text-gray-300 text-xs mt-1">Day ${item.day}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            updateCounts();
+            lucide.createIcons();
+        }
+
+        function updateCounts() {
+            const imageCount = mediaItems.filter(item => item.type === 'image').length;
+            const videoCount = mediaItems.filter(item => item.type === 'video').length;
+            const totalCount = mediaItems.length;
+
+            document.getElementById('total-count').textContent = totalCount;
+            document.getElementById('image-count').textContent = imageCount;
+            document.getElementById('video-count').textContent = videoCount;
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderGallery();
+            });
+        });
+
+        // ===== LIGHTBOX FUNCTIONALITY =====
+        function openLightbox(index) {
+            currentMediaIndex = index;
+            zoomLevel = 1;
+            displayCurrentMedia();
+            document.getElementById('lightbox').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('show');
+            const content = document.getElementById('lightbox-content');
+            const video = content.querySelector('video');
+            if (video) {
+                video.pause();
+            }
+            document.body.style.overflow = 'auto';
+            zoomLevel = 1;
+        }
+
+        function displayCurrentMedia() {
+            const item = filteredMedia[currentMediaIndex];
+            const content = document.getElementById('lightbox-content');
+            const caption = document.getElementById('lightbox-caption');
+
+            if (item.type === 'video') {
+                content.innerHTML = `<video src="${item.src}" controls autoplay class="max-w-[90vw] max-h-[90vh] rounded-xl"></video>`;
+            } else {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.caption;
+                img.className = 'max-w-[90vw] max-h-[90vh] rounded-xl';
+                img.onerror = function () { this.src = 'logo.jpeg'; };
+
+                // Double-click/tap to zoom
+                img.addEventListener('dblclick', toggleZoom);
+
+                // Touch events for mobile pinch/zoom
+                let initialDistance = 0;
+                img.addEventListener('touchstart', handleTouchStart);
+                img.addEventListener('touchmove', handleTouchMove);
+
+                content.innerHTML = '';
+                content.appendChild(img);
+            }
+
+            caption.textContent = `${item.caption} - Day ${item.day}`;
+            lucide.createIcons();
+        }
+
+        function toggleZoom(e) {
+            const img = e.target;
+            if (zoomLevel === 1) {
+                zoomLevel = 2;
+                img.style.transform = 'scale(2)';
+                img.classList.add('zoomed');
+                img.style.cursor = 'zoom-out';
+            } else {
+                zoomLevel = 1;
+                img.style.transform = 'scale(1)';
+                img.classList.remove('zoomed');
+                img.style.cursor = 'zoom-in';
+            }
+        }
+
+        function handleTouchStart(e) {
+            if (e.touches.length === 2) {
+                initialDistance = Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY
+                );
+            }
+        }
+
+        function handleTouchMove(e) {
+            if (e.touches.length === 2 && initialDistance > 0) {
+                e.preventDefault();
+                const currentDistance = Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY
+                );
+                zoomLevel = Math.max(1, Math.min(3, currentDistance / initialDistance));
+                e.target.style.transform = `scale(${zoomLevel})`;
+            }
+        }
+
+        function nextMedia() {
+            currentMediaIndex = (currentMediaIndex + 1) % filteredMedia.length;
+            zoomLevel = 1;
+            displayCurrentMedia();
+        }
+
+        function previousMedia() {
+            currentMediaIndex = (currentMediaIndex - 1 + filteredMedia.length) % filteredMedia.length;
+            zoomLevel = 1;
+            displayCurrentMedia();
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (certLightbox.classList.contains('show')) {
+                    closeCertLightbox();
+                }
+                if (imageModal.classList.contains('show')) {
+                    closeModal();
+                }
+                // Player minimize logic is handled within the player script's keydown handler
+            }
+
+            if (e.key === 'ArrowLeft' && imageModal.classList.contains('show')) {
+                navigateGallery(-1);
+            }
+            if (e.key === 'ArrowRight' && imageModal.classList.contains('show')) {
+                navigateGallery(1);
+            }
+
+            // Prevent spacebar behavior and play/pause is handled inside DOMContentLoaded for the music player
+        });
+
+        // Scroll Animations
+        const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-fade-left, .scroll-fade-right, .scroll-scale');
+
+        // Click outside to close
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.05,
+            rootMargin: '0px 0px -20px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll animation elements
+        document.querySelectorAll('.scroll-animate, .scroll-fade-left, .scroll-fade-right, .scroll-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== OTHER FUNCTIONALITY =====
+
+        // Year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                contactForm.reset();
+                document.getElementById('form-success').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('form-success').classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        });
+
+        // Print Journal
+        document.getElementById('print-btn').addEventListener('click', () => {
+            window.print();
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+                navbar.style.boxShadow = '0 4px 30px rgba(56, 189, 248, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // ===== INITIALIZE =====
+        renderGallery();
+        lucide.createIcons();
+
+        // Add scroll animations to dynamically added elements
+        setTimeout(() => {
+            document.querySelectorAll('.scroll-scale').forEach(el => observer.observe(el));
+            lucide.createIcons();
+        }, 100);
+
+        const viewButton = document.getElementById('viewButton');
+        const modal = document.getElementById('imageModal');
+        const closeModal = document.getElementById('closeModal');
+
+        viewButton.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains("cert-image")) {
+                const lightbox = document.getElementById("cert-lightbox");
+                const lightboxImg = document.getElementById("cert-lightbox-img");
+
+                lightboxImg.src = e.target.src;
+                lightbox.classList.remove("hidden");
+
+                // Smooth fade-in
+                setTimeout(() => lightbox.classList.add("show"), 10);
+            }
+        });
+
+        // CLOSE BY X BUTTON
+        document.getElementById("cert-lightbox-close").addEventListener("click", function () {
+            const lightbox = document.getElementById("cert-lightbox");
+            lightbox.classList.remove("show");
+
+            // Fade-out
+            setTimeout(() => lightbox.classList.add("hidden"), 300);
+        });
+
+        // CLOSE WHEN CLICKING OUTSIDE THE IMAGE
+        document.getElementById("cert-lightbox").addEventListener("click", function (e) {
+            if (e.target.id === "cert-lightbox") {
+                this.classList.remove("show");
+                setTimeout(() => this.classList.add("hidden"), 300);
+            }
+        });
+
+        // CLOSE ON ESC KEY PRESS
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                const lightbox = document.getElementById("cert-lightbox");
+                if (lightbox && !lightbox.classList.contains("hidden")) {
+                    lightbox.classList.remove("show");
+                    setTimeout(() => lightbox.classList.add("hidden"), 300);
+                }
+
+                const imageModal = document.getElementById("imageModal");
+                if (imageModal && !imageModal.classList.contains("hidden")) {
+                    imageModal.classList.add("hidden");
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const songs = [
+                { title: 'Adventure of a Lifetime', artist: 'Coldplay', src: 'Adventure of a Lifetime.mp3', art: 'https://i.scdn.co/image/ab67616d0000b2738ff7c3580d429c8212b9a3b6' },
+            ];
+
+            let currentSongIndex = 0;
+            let isPlaying = false;
+            let isShuffle = false;
+            let isPlayerVisible = false;
+
+            // DOM Elements
+            const audio = document.getElementById('audio-player');
+            const playerContainer = document.getElementById('music-player-container');
+
+            // Nav buttons
+            const musicNavBtn = document.getElementById('music-nav-btn');
+            const mobileMusicNavBtn = document.getElementById('mobile-music-nav-btn');
+
+            // Player Controls
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const shuffleBtn = document.getElementById('shuffle-btn');
+            const stopBtn = document.getElementById('stop-btn');
+
+            // Window Controls
+            const minimizeBtn = document.getElementById('minimize-btn');
+            const closePlayerBtn = document.getElementById('close-player-btn');
+
+            // Playlist
+            const playlistBtn = document.getElementById('playlist-btn');
+            const playlistContainer = document.getElementById('playlist-container');
+            const playlistSongsEl = document.getElementById('playlist-songs');
+
+            // Display
+            const songTitleEl = document.getElementById('song-title');
+            const songArtistEl = document.getElementById('song-artist');
+            const albumArtEl = document.getElementById('album-art');
+
+            // Progress & Time
+            const currentTimeEl = document.getElementById('current-time');
+            const durationEl = document.getElementById('duration');
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+
+            function setPlayerVisibility(visible) {
+                isPlayerVisible = visible;
+                if (visible) {
+                    playerContainer.classList.remove('hidden');
+                    // Ensure playlist does not auto-show when player opens
+                    try { if (playlistContainer) hidePlaylistContainer(); } catch (e) { }
+                    try { if (playlistBubbleVisible) closeMobilePlaylistOverlay(); } catch (e) { }
+                } else {
+                    playerContainer.classList.add('hidden');
+                    try { if (playlistBubbleVisible) closeMobilePlaylistOverlay(); } catch (e) { }
+                }
+            }
+
+            function loadSong(song) {
+                songTitleEl.textContent = song.title;
+                songArtistEl.textContent = song.artist;
+                albumArtEl.src = song.art;
+                // Update the bubble art if present
+                const bubbleImg = document.getElementById('bubble-art');
+                if (bubbleImg) bubbleImg.src = song.art;
+                audio.src = song.src;
+                updatePlaylistUI();
+            }
+
+            function playSong() {
+                isPlaying = true;
+                audio.play().catch(error => console.error("Audio Playback Error:", error));
+                playPauseBtn.innerHTML = '<i data-lucide="pause" class="w-7 h-7"></i>';
+                musicNavBtn.classList.add('playing');
+                mobileMusicNavBtn.classList.add('playing');
+                updatePlaylistUI();
+                lucide.createIcons();
+            }
+
+            function pauseSong() {
+                isPlaying = false;
+                audio.pause();
+                playPauseBtn.innerHTML = '<i data-lucide="play" class="w-7 h-7"></i>';
+                updatePlaylistUI();
+                lucide.createIcons();
+            }
+
+            function stopSong() {
+                pauseSong();
+                audio.currentTime = 0;
+                musicNavBtn.classList.remove('playing');
+                mobileMusicNavBtn.classList.remove('playing');
+            }
+
+            function closePlayer() {
+                stopSong();
+                setPlayerVisibility(false);
+                playlistContainer.classList.add('hidden');
+                // If mobile overlay is visible, ensure it closes as well
+                try { if (mobileOverlay && mobileOverlay.classList.contains('show')) closeMobileOverlay(); } catch (e) { /* mobileOverlay may not be initialized yet */ }
+            }
+
+            function prevSong() {
+                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                loadSong(songs[currentSongIndex]);
+                playSong();
+            }
+
+            function nextSong() {
+                if (isShuffle) {
+                    let newIndex;
+                    do {
+                        newIndex = Math.floor(Math.random() * songs.length);
+                    } while (newIndex === currentSongIndex && songs.length > 1);
+                    currentSongIndex = newIndex;
+                } else {
+                    currentSongIndex = (currentSongIndex + 1) % songs.length;
+                }
+                loadSong(songs[currentSongIndex]);
+                playSong();
+            }
+
+            function toggleShuffle() {
+                isShuffle = !isShuffle;
+                shuffleBtn.classList.toggle('active', isShuffle);
+            }
+
+            function togglePlaylist() {
+                playlistContainer.classList.toggle('show');
+                playlistContainer.classList.toggle('hidden');
+                playlistContainer.setAttribute('aria-hidden', playlistContainer.classList.contains('hidden'));
+            }
+
+            function hidePlaylistContainer() {
+                playlistContainer.classList.add('hidden');
+                playlistContainer.classList.remove('show');
+                playlistContainer.setAttribute('aria-hidden', 'true');
+            }
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            function updateProgress() {
+                const { duration, currentTime } = audio;
+                if (duration) {
+                    const progressPercent = (currentTime / duration) * 100;
+                    progressBar.style.width = `${progressPercent}%`;
+                    durationEl.textContent = formatTime(duration);
+                    currentTimeEl.textContent = formatTime(currentTime);
+                }
+            }
+
+            function setProgress(e) {
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audio.duration;
+                if (duration) {
+                    audio.currentTime = (clickX / width) * duration;
+                }
+            }
+
+            function renderPlaylist() {
+                playlistSongsEl.innerHTML = '';
+                songs.forEach((song, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'flex justify-between items-center p-2 rounded-md hover:bg-primary cursor-pointer transition-colors';
+                    li.dataset.index = index;
+
+                    li.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-textMuted w-5">${index + 1}.</span>
+                            <div>
+                                <p class="font-semibold text-textMain">${song.title}</p>
+                                <p class="text-xs text-textMuted">${song.artist}</p>
+                            </div>
+                        </div>
+                        <i data-lucide="play" class="w-5 h-5 text-transparent song-play-icon"></i>
+                    `;
+                    playlistSongsEl.appendChild(li);
+                });
+                lucide.createIcons();
+                updatePlaylistUI();
+            }
+
+            function updatePlaylistUI() {
+                const items = playlistSongsEl.querySelectorAll('li');
+                items.forEach((item, index) => {
+                    const icon = item.querySelector('.song-play-icon');
+                    if (index === currentSongIndex) {
+                        item.classList.add('active');
+                        icon.classList.remove('text-transparent');
+                        if (isPlaying) {
+                            icon.outerHTML = '<i data-lucide="volume-2" class="w-5 h-5 text-accent song-play-icon"></i>';
+                        } else {
+                            icon.outerHTML = '<i data-lucide="play" class="w-5 h-5 text-accent song-play-icon"></i>';
+                        }
+                    } else {
+                        item.classList.remove('active');
+                        icon.classList.add('text-transparent');
+                    }
+                });
+                // Update mobile playlist bubble active state
+                try {
+                    const bubbleItems = playlistBubbleList.querySelectorAll('li');
+                    bubbleItems.forEach((item, index) => {
+                        if (index === currentSongIndex) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                } catch (e) { }
+                lucide.createIcons();
+            }
+
+            function handleMusicNavClick(e) {
+                e.preventDefault();
+                if (isPlayerVisible) {
+                    setPlayerVisibility(false); // Minimize
+                } else {
+                    setPlayerVisibility(true); // Show
+                }
+            }
+
+            // Event Listeners
+            musicNavBtn.addEventListener('click', handleMusicNavClick);
+            mobileMusicNavBtn.addEventListener('click', handleMusicNavClick);
+
+            playPauseBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
+            prevBtn.addEventListener('click', prevSong);
+            nextBtn.addEventListener('click', nextSong);
+            stopBtn.addEventListener('click', stopSong);
+            shuffleBtn.addEventListener('click', toggleShuffle);
+
+            // Playlist handled by mobile-aware handler below
+
+            // Mobile playlist bubble behavior
+            const playlistBubble = document.getElementById('playlist-bubble');
+            const playlistBubbleList = document.getElementById('playlist-bubble-list');
+            const playlistBubbleClose = document.getElementById('playlist-bubble-close');
+            let playlistBubbleVisible = false;
+            // Long press detection
+            let longPressTimer = null;
+            let longPressTriggered = false;
+
+            function renderPlaylistBubble() {
+                playlistBubbleList.innerHTML = '';
+                songs.forEach((song, idx) => {
+                    const li = document.createElement('li');
+                    li.className = 'cursor-pointer rounded-md hover:bg-primary/20';
+                    li.dataset.index = idx;
+                    li.innerHTML = `
+                        <div class="playlist-item-number text-xs text-gray-400 mb-1">${idx + 1}.</div>
+                        <div>
+                            <span class="playlist-item-title">${song.title}</span>
+                            <span class="playlist-item-artist">${song.artist}</span>
+                        </div>
+                    `;
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        currentSongIndex = idx;
+                        loadSong(songs[currentSongIndex]);
+                        playSong();
+                        // Hide just the playlist fullscreen overlay, keep player overlay visible
+                        hidePlaylistFullscreen();
+                        try { if (mobileOverlay && !mobileOverlay.classList.contains('show')) openMobileOverlay(); } catch (e) { }
+                        // ensure player is visible
+                        setPlayerVisibility(true);
+                    });
+                    playlistBubbleList.appendChild(li);
+                });
+            }
+
+            // Open the playlist as a full-screen overlay on mobile
+            function openMobilePlaylistOverlay() {
+                // Open the main overlay and player
+                openMobileOverlay();
+                // Show playlist container in fullscreen mode
+                if (playlistContainer) {
+                    playlistContainer.classList.add('show', 'playlist-fullscreen');
+                    playlistContainer.classList.remove('hidden');
+                    playlistContainer.setAttribute('aria-hidden', 'false');
+                }
+            }
+
+            function closeMobilePlaylistOverlay() {
+                if (playlistContainer) {
+                    playlistContainer.classList.remove('show', 'playlist-fullscreen');
+                    playlistContainer.classList.add('hidden');
+                    playlistContainer.setAttribute('aria-hidden', 'true');
+                }
+                // close the overlay as well
+                closeMobileOverlay();
+            }
+
+            // Hide just the fullscreen playlist container (keep the player overlay open)
+            function hidePlaylistFullscreen() {
+                if (playlistContainer) {
+                    playlistContainer.classList.remove('show', 'playlist-fullscreen');
+                    playlistContainer.classList.add('hidden');
+                    playlistContainer.setAttribute('aria-hidden', 'true');
+                }
+            }
+
+            function showPlaylistBubble() {
+                // Maintain for backward compatibility, but direct users to mobile playlist overlay
+                renderPlaylistBubble();
+                // Show mobile playlist overlay instead for small devices
+                openMobilePlaylistOverlay();
+                return;
+                // position next to bubble
+                if (musicBubble && musicBubble.style.left && musicBubble.style.left !== 'auto') {
+                    const leftCoord = parseInt(musicBubble.style.left, 10);
+                    playlistBubble.style.left = (leftCoord + musicBubble.offsetWidth + 8) + 'px';
+                    playlistBubble.style.right = 'auto';
+                } else {
+                    playlistBubble.style.right = (16 + musicBubble.offsetWidth) + 'px';
+                    playlistBubble.style.left = 'auto';
+                }
+            }
+
+            function hidePlaylistBubble() {
+                // Keep it for compatibility; close mobile playlist overlay instead
+                try { if (playlistBubble) { playlistBubble.classList.remove('show'); playlistBubble.classList.add('hidden'); playlistBubble.setAttribute('aria-hidden', 'true'); playlistBubbleVisible = false; } } catch (e) { }
+                try { if (playlistContainer && playlistContainer.classList.contains('show')) hidePlaylistFullscreen(); } catch (e) { }
+            }
+
+            playlistBtn.addEventListener('click', (e) => {
+                if (isMobileSmall()) {
+                    e.preventDefault();
+                    if (playlistContainer && playlistContainer.classList.contains('show')) {
+                        // close the mobile playlist overlay
+                        closeMobilePlaylistOverlay();
+                    } else {
+                        openMobilePlaylistOverlay();
+                    }
+                } else {
+                    togglePlaylist();
+                }
+            });
+
+            // Close X button for the desktop playlist
+            const playlistCloseBtn = document.getElementById('playlist-close-btn');
+            if (playlistCloseBtn) {
+                playlistCloseBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // If this is a mobile overlay full-screen playlist, close the overlay
+                    try {
+                        if (playlistContainer && playlistContainer.classList.contains('playlist-fullscreen')) return closeMobilePlaylistOverlay();
+                    } catch (e) { }
+                    hidePlaylistContainer();
+                });
+            }
+
+            playlistBubbleClose.addEventListener('click', () => closeMobilePlaylistOverlay());
+
+            // Hide mobile playlist overlay if clicking outside it
+            document.addEventListener('click', (e) => {
+                if (playlistContainer && playlistContainer.classList.contains('show') && !e.target.closest('#playlist-container') && !e.target.closest('#playlist-btn') && !e.target.closest('#music-bubble')) {
+                    closeMobilePlaylistOverlay();
+                }
+            });
+
+            // Hide playlist bubble when overlay closed
+            function hideTransientUI() {
+                closeMobilePlaylistOverlay();
+            }
+
+            minimizeBtn.addEventListener('click', () => {
+                if (mobileOverlay && mobileOverlay.classList.contains('show')) {
+                    closeMobileOverlay();
+                } else {
+                    setPlayerVisibility(false);
+                }
+            });
+            closePlayerBtn.addEventListener('click', closePlayer);
+
+            audio.addEventListener('ended', nextSong);
+            audio.addEventListener('timeupdate', updateProgress);
+            progressContainer.addEventListener('click', setProgress);
+
+            playlistSongsEl.addEventListener('click', (e) => {
+                const item = e.target.closest('li');
+                if (item) {
+                    const index = parseInt(item.dataset.index);
+                    if (index === currentSongIndex && isPlaying) {
+                        pauseSong();
+                    } else {
+                        currentSongIndex = index;
+                        loadSong(songs[currentSongIndex]);
+                        playSong();
+                    }
+                    // If this is the mobile fullscreen playlist, hide the playlist full-screen
+                    try {
+                        if (isMobileSmall() && playlistContainer && playlistContainer.classList.contains('playlist-fullscreen')) {
+                            hidePlaylistFullscreen();
+                            // ensure the mobile overlay/player remains visible
+                            try { if (mobileOverlay && !mobileOverlay.classList.contains('show')) openMobileOverlay(); } catch (e) { }
+                        }
+                    } catch (e) { }
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    audio.volume = Math.min(1, audio.volume + 0.1);
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    audio.volume = Math.max(0, audio.volume - 0.1);
+                }
+            });
+
+            // Initial load
+            audio.volume = 0.8; // Set default volume to high
+            loadSong(songs[currentSongIndex]);
+            renderPlaylist();
+
+            // MOBILE BUBBLE & OVERLAY - Chat Head behavior
+            const musicBubble = document.getElementById('music-bubble');
+            const mobileOverlay = document.getElementById('mobile-player-overlay');
+            const mobileOverlayClose = document.getElementById('mobile-player-close');
+
+            function isMobileSmall() {
+                const uaMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                const smallest = Math.min(window.innerWidth, window.innerHeight);
+                return uaMobile && smallest <= 720;
+            }
+
+            function showBubbleIfMobile() {
+                if (isMobileSmall()) {
+                    musicBubble.style.display = 'flex';
+                    musicBubble.setAttribute('aria-hidden', 'false');
+                } else {
+                    musicBubble.style.display = 'none';
+                    musicBubble.setAttribute('aria-hidden', 'true');
+                }
+            }
+
+            // Toggle overlay
+            function openMobileOverlay() {
+                mobileOverlay.classList.add('show');
+                mobileOverlay.classList.remove('hidden');
+                mobileOverlay.setAttribute('aria-hidden', 'false');
+                playerContainer.classList.add('mobile-player-fullscreen');
+                playerContainer.classList.remove('hidden');
+                setPlayerVisibility(true);
+                // also ensure playlist containers are hidden when overlay opens
+                try { if (playlistContainer) hidePlaylistContainer(); } catch (e) { }
+                try { if (playlistContainer && playlistContainer.classList.contains('show')) closeMobilePlaylistOverlay(); } catch (e) { }
+                document.body.style.overflow = 'hidden';
+                // hide chat-head while overlay is visible
+                if (musicBubble) musicBubble.style.display = 'none';
+                // also hide playlist bubble if any
+                try { if (playlistBubble) { playlistBubble.classList.add('hidden'); playlistBubbleVisible = false; } } catch (e) { }
+            }
+
+            function closeMobileOverlay() {
+                mobileOverlay.classList.remove('show');
+                mobileOverlay.classList.add('hidden');
+                mobileOverlay.setAttribute('aria-hidden', 'true');
+                playerContainer.classList.remove('mobile-player-fullscreen');
+                setPlayerVisibility(false);
+                document.body.style.overflow = 'auto';
+                // Keep the player hidden again on mobile (CSS handles display:none)
+                playerContainer.classList.add('hidden');
+                if (musicBubble) musicBubble.style.display = 'flex';
+                try { if (playlistContainer && playlistContainer.classList.contains('show')) closeMobilePlaylistOverlay(); } catch (e) { }
+                // ensure playlist container is hidden
+                try { if (playlistContainer) hidePlaylistContainer(); } catch (e) { }
+            }
+
+            // Click handlers
+            musicBubble.addEventListener('click', () => {
+                try { if (playlistContainer && playlistContainer.classList.contains('show')) closeMobilePlaylistOverlay(); } catch (e) { }
+                if (!mobileOverlay.classList.contains('show')) {
+                    openMobileOverlay();
+                } else {
+                    closeMobileOverlay();
+                }
+            });
+
+            // Long-press (mobile) to show playlist bubble, and double-tap fallback
+            musicBubble.addEventListener('touchstart', (e) => {
+                longPressTriggered = false;
+                if (!isMobileSmall()) return;
+                longPressTimer = setTimeout(() => {
+                    // don't show if user is dragging
+                    if (musicBubble.classList.contains('dragging')) return;
+                    longPressTriggered = true;
+                    e.preventDefault();
+                    if (playlistContainer && playlistContainer.classList.contains('show')) closeMobilePlaylistOverlay(); else openMobilePlaylistOverlay();
+                }, 600); // 600ms long press
+            }, { passive: false });
+
+            musicBubble.addEventListener('touchmove', () => {
+                if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
+            });
+
+            musicBubble.addEventListener('touchend', (e) => {
+                if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
+                if (longPressTriggered) { longPressTriggered = false; lastTap = 0; return; }
+                // double-tap (mobile) on chat-head to show playlist bubble
+                const now = new Date().getTime();
+                if (now - lastTap < 300 && isMobileSmall()) {
+                    e.preventDefault();
+                    if (playlistContainer && playlistContainer.classList.contains('show')) closeMobilePlaylistOverlay(); else openMobilePlaylistOverlay();
+                }
+                lastTap = now;
+            });
+
+            mobileOverlayClose.addEventListener('click', () => {
+                closeMobileOverlay();
+            });
+
+            // Close overlay if we tap outside of the player container on overlay
+            mobileOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileOverlay) closeMobileOverlay();
+            });
+
+            // Dragging behavior for music bubble (touch + mouse)
+            (function setupDrag() {
+                let dragging = false;
+                let startX = 0, startY = 0, origX = 0, origY = 0;
+
+                function getPointer(e) {
+                    if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                    return { x: e.clientX, y: e.clientY };
+                }
+
+                function start(e) {
+                    const p = getPointer(e);
+                    dragging = true;
+                    startX = p.x; startY = p.y;
+                    origX = musicBubble.offsetLeft || (window.innerWidth - musicBubble.offsetWidth - 16);
+                    origY = musicBubble.offsetTop || (window.innerHeight - musicBubble.offsetHeight - 96);
+                    musicBubble.style.transition = 'none';
+                    musicBubble.classList.add('dragging');
+                }
+
+                function move(e) {
+                    if (!dragging) return;
+                    const p = getPointer(e);
+                    const dx = p.x - startX;
+                    const dy = p.y - startY;
+                    let left = origX + dx;
+                    let top = origY + dy;
+                    // keep within bounds
+                    left = Math.max(8, Math.min(window.innerWidth - musicBubble.offsetWidth - 8, left));
+                    top = Math.max(8, Math.min(window.innerHeight - musicBubble.offsetHeight - 8, top));
+                    musicBubble.style.left = left + 'px';
+                    musicBubble.style.top = top + 'px';
+                    musicBubble.style.right = 'auto';
+                    musicBubble.style.bottom = 'auto';
+                }
+
+                function end() {
+                    if (!dragging) return;
+                    dragging = false;
+                    musicBubble.classList.remove('dragging');
+                    musicBubble.style.transition = '';
+                    // Snap to nearest vertical edge
+                    const centerX = musicBubble.offsetLeft + musicBubble.offsetWidth / 2;
+                    if (centerX < window.innerWidth / 2) {
+                        musicBubble.style.left = '12px';
+                        musicBubble.style.right = 'auto';
+                    } else {
+                        musicBubble.style.left = 'auto';
+                        musicBubble.style.right = '12px';
+                    }
+                    // Re-position playlist bubble if visible
+                    try {
+                        if (playlistBubble && playlistBubbleVisible) {
+                            if (musicBubble.style.left && musicBubble.style.left !== 'auto') {
+                                const leftCoord = parseInt(musicBubble.style.left, 10);
+                                playlistBubble.style.left = (leftCoord + musicBubble.offsetWidth + 8) + 'px';
+                                playlistBubble.style.right = 'auto';
+                            } else {
+                                playlistBubble.style.right = (16 + musicBubble.offsetWidth) + 'px';
+                                playlistBubble.style.left = 'auto';
+                            }
+                        }
+                    } catch (e) { }
+                }
+
+                musicBubble.addEventListener('touchstart', start, { passive: true });
+                musicBubble.addEventListener('touchmove', move, { passive: false });
+                window.addEventListener('touchend', end);
+                musicBubble.addEventListener('mousedown', start);
+                window.addEventListener('mousemove', move);
+                window.addEventListener('mouseup', end);
+            })();
+
+            // update on resize/orientation change
+            window.addEventListener('resize', showBubbleIfMobile);
+            window.addEventListener('orientationchange', showBubbleIfMobile);
+
+            // initial bubble state
+            showBubbleIfMobile();
+
+            // Close overlay on ESC, minimize player, toggle play/pause with spacebar, and handle playlist bubble
+            document.addEventListener('keydown', (e) => {
+                const activeElement = document.activeElement;
+                // Spacebar for play/pause, but not when typing into inputs
+                if ((e.key === ' ' || e.code === 'Space') && activeElement) {
+                    const tag = activeElement.tagName;
+                    if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !activeElement.isContentEditable) {
+                        e.preventDefault();
+                        if (isPlaying) pauseSong(); else playSong();
+                    }
+                }
+
+                if (e.key === 'Escape') {
+                    // If the mobile playlist overlay is open, close it first
+                    if (playlistContainer && playlistContainer.classList.contains('show') && playlistContainer.classList.contains('playlist-fullscreen')) return closeMobilePlaylistOverlay();
+                    // If mobile overlay is open - close it
+                    if (mobileOverlay && mobileOverlay.classList.contains('show')) {
+                        return closeMobileOverlay();
+                    }
+                    // If desktop playlist is open - close it
+                    if (playlistContainer && playlistContainer.classList.contains('show')) {
+                        return hidePlaylistContainer();
+                    }
+                    // Otherwise, if the player is visible, minimize it
+                    if (isPlayerVisible) {
+                        setPlayerVisibility(false);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
